@@ -7,13 +7,17 @@ import BooksRender from '../../../../components/Book/BooksRender';
 
 import RecommendationsWrapper from './Recommendations.styles';
 
-const Recommendations = () => {
+type RecommendationProps = {
+  id: number
+}
+
+const Recommendations: React.FC<RecommendationProps> = (props) => {
   const recommendedBooks = useAppSelector((state) => state.bookReducer.recommended);
   const dispatch = useAppDispatch();
 
   useEffect(() => {
     (async () => {
-      dispatch(getRecommendations());
+      dispatch(getRecommendations(props.id));
     })();
   }, [dispatch]);
 

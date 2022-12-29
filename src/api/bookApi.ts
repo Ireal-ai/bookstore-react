@@ -64,8 +64,8 @@ const addComment = (data: AddCommentOptions) => {
   return axios.post<AddCommentResponse>(`${bookPath}/add-comment`, data);
 };
 
-const getRecommendations = () => {
-  return axios.get<BookType[]>(`${bookPath}/recommendations`);
+const getRecommendations = (id: unknown) => {
+  return axios.get<BookType[]>(`${bookPath}/recommendations&exclude=${id}`);
 };
 
 const getFavorite = () => {

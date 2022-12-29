@@ -17,8 +17,8 @@ const Catalog = () => {
   const [parsedParams] = useQuery<QuerySearchOptions>();
 
   const order = useMemo(() => {
-    return constants.BOOK_SORTING_OPTIONS[(parsedParams.order || 'price')];
-  }, [parsedParams.order]);
+    return constants.BOOK_SORTING_OPTIONS[(parsedParams.ordering || 'price')];
+  }, [parsedParams.ordering]);
 
   return (
     <CommonWrapper>

@@ -49,6 +49,7 @@ const SignUpForm = () => {
         const response = await authAPI.signUp({
           email: values.email,
           password: values.password,
+          password2: values.passwordRepeat,
         });
         dispatch(setUser(response.data.user));
 

@@ -17,26 +17,28 @@ import Footer from './ui/containers/Footer';
 import Navigation from './ui/containers/Navigation';
 import MainWrapper from './ui/components/MainWrapper';
 
-export const socket = io(config.apiBaseUrl);
+// export const socket = {}; //io(config.apiBaseUrl);
 
 const App = () => {
   const dispatch = useAppDispatch();
   const [isAuthChecked, setIsAuthChecked] = useState(false);
 
-  useEffect(() => {
-    const listener = () => {
-      console.log(`Connected with socket id: ${socket.id}`);
-    };
-    socket.on('connect', listener);
+  // useEffect(() => {
+  //   const listener = () => {
+  //     console.log(`Connected with socket id: ${socket.id}`);
+  //   };
+  //   socket.on('connect', listener);
 
-    return () => {
-      socket.off('connect', listener);
-    };
-  }, []);
+  //   return () => {
+  //     socket.off('connect', listener);
+  //   };
+  // }, []);
 
   useEffect(() => {
     (async () => {
       const token = Cookies.get(constants.token.access);
+      console.log('token', token);
+      
       if (!token) {
         setIsAuthChecked(true);
 

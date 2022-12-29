@@ -11,13 +11,14 @@ const SortingList = () => {
   const [parsedParams, setParams] = useQuery<QuerySearchOptions>();
 
   const applySortOrder = (value: BookSortOptions) => {
-    parsedParams.order = value;
+    parsedParams.ordering = `${parsedParams.orderDir === 'ASC' ? '-' : ''}${value}` as BookSortOptions;
 
-    if (parsedParams.orderDir === 'ASC') {
-      parsedParams.orderDir = 'DESC';
-    } else {
-      parsedParams.orderDir = 'ASC';
-    }
+
+    // if (parsedParams.orderDir === 'ASC') {
+    //   parsedParams.orderDir = 'DESC';
+    // } else {
+    //   parsedParams.orderDir = 'ASC';
+    // }
     setParams(parsedParams);
   };
 

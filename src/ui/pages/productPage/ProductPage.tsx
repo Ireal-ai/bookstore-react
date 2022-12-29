@@ -39,6 +39,8 @@ const ProductPage = () => {
         setBookInState(response.data.book);
       })();
     } catch (err) {
+      console.log('err >', err);
+      
       toast.error('Sorry, something went wrong...', { autoClose: 3000 });
     }
   }, [params.id]);
@@ -137,7 +139,7 @@ const ProductPage = () => {
       >
         <AuthorizeBanner />
       </AuthProtector>
-      <Recommendations />
+      <Recommendations id={book.bookId}/>
     </CommonWrapper>
   );
 };

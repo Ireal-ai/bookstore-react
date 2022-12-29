@@ -4,7 +4,7 @@ import dayjs from 'dayjs';
 import { toast } from 'react-toastify';
 import relativeTime from 'dayjs/plugin/relativeTime';
 
-import { socket } from '../../../../../App';
+// import { socket } from '../../../../../App';
 import bookApi from '../../../../../api/bookApi';
 import { BookType, Comment } from '../../../../../types';
 import { useAppSelector } from '../../../../../store';
@@ -39,26 +39,33 @@ const Comments: React.FC<CommentsProps> = (props) => {
         const response = await bookApi.addComment(newComment);
         value.text = '';
 
-        socket.emit('comment:add', response.data);
+        // socket.emit('comment:add', response.data);
       } catch (error) {
         toast.error('Sorry, something went wrong...', { autoClose: 3000 });
       }
     },
   });
 
-  useEffect(() => {
-    socket.on('comment:save', (data: Comment) => {
-      props.book.comments.push(data);
-      const book = { ...props.book };
-      props.setBookInState(book);
-    });
-  }, [socket]);
+  // useEffect(() => {
+  //   socket.on('comment:save', (data: Comment) => {
+  //     props.book.comments.push(data);
+  //     const book = { ...props.book };
+  //     props.setBookInState(book);
+  //   });
+  // }, [socket]);
+
+  const formatDate = (date: string) => {
+    return dayjs(date).format('YYYY-MM-DD HH:mm')
+  } 
+
 
   const dateToDateAgo = (date: string) => {
+    // debugger
     dayjs.extend(relativeTime);
     const newDate = dayjs(date).fromNow();
-    return `Left a comment ${newDate}`;
+    return `Left a comment ${formatDate(date)} (${newDate})`;
   };
+
 
   return (
     <CommentsWrapper>
@@ -71,10 +78,10 @@ const Comments: React.FC<CommentsProps> = (props) => {
               className="comment"
             >
               <img
-                src={comment.user.avatar || defaultAvatar}
+                src={comment?.user?.avatar || defaultAvatar}
                 className="avatar" />
               <div className="content-block">
-                <p className="author-name">{comment.user.name}</p>
+                <p className="author-name">{comment?.user?.name}</p>
                 <p className="date">{dateToDateAgo(comment.date)}</p>
               </div>
               <p className="text">{comment.text}</p>

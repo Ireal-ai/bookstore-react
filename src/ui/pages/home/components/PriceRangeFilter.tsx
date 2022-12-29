@@ -52,8 +52,8 @@ const PriceFilter: FC<MultiRangeSliderProps> = (props) => {
 
   const setPriceRange: React.MouseEventHandler<HTMLDivElement> = () => {
     setParams({
-      priceFrom: minVal.toString(),
-      priceTo: maxVal.toString(),
+      price_min: minVal.toString(),
+      price_max: maxVal.toString(),
     });
   };
 

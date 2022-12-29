@@ -8,6 +8,8 @@ export const getAllBooksThunk = createAsyncThunk(
   async (data: GetAllBooksOptions) => {
     try {
       const response = await bookApi.getAllBooks(data);
+      console.log('resp', response);
+      
       return response.data;
     } catch (err) {
       toast.error('Sorry, we were unable to download the books, something went wrong...',
@@ -19,9 +21,9 @@ export const getAllBooksThunk = createAsyncThunk(
 
 export const getRecommendations = createAsyncThunk(
   'books/getRecommendations',
-  async () => {
+  async (id: number) => {
     try {
-      const response = await bookApi.getRecommendations();
+      const response = await bookApi.getRecommendations(id);
       return response.data;
     } catch (err) {
       toast.error('Sorry, we were unable to download the recommended books...',

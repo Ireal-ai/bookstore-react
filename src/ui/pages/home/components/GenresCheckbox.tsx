@@ -16,17 +16,17 @@ const GenresCheckbox = () => {
   const genres = useAppSelector((state) => state.genreReducer.genres);
 
   useEffect(() => {
-    if (parsedParams.genres) {
-      const genresFromQuery = parsedParams.genres.split(',');
+    if (parsedParams.genre) {
+      const genresFromQuery = parsedParams.genre.split(',');
 
       if (genresFromQuery.length !== 0) {
         setCheckedGenres(genresFromQuery);
       }
     }
-  }, [parsedParams.genres]);
+  }, [parsedParams.genre]);
 
   const updateFilterQuery = (genres: string[]) => {
-    parsedParams.genres = genres.toString();
+    parsedParams.genre = genres.toString();
     setParams(parsedParams);
   };
 

@@ -45,10 +45,10 @@ export type BooksArray = BookType[];
 export type QuerySearchOptions = {
   page?: string;
   limit?: string;
-  genres?: string;
-  priceFrom?: string;
-  priceTo?: string;
-  order?: BookSortOptions;
+  genre?: string;
+  price_min?: string;
+  price_max?: string;
+  ordering?: BookSortOptions;
   orderDir?: 'ASC' | 'DESC';
   value?: string;
 }

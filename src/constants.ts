@@ -18,7 +18,12 @@ const BOOK_SORTING_OPTIONS = {
   averageRate: 'rating',
   dateOfIssue: 'date',
   author: 'author',
-  title: 'name',
+  title: 'title',
+  '-price': '-price',
+  '-dateOfIssue': '-dateOfIssue',
+  '-averageRate': '-averageRate',
+  '-author': '-author',
+  '-title': 'title'
 };
 
 const token = {
