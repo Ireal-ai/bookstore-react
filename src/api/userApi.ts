@@ -23,7 +23,7 @@ const updateUser = (id: number, data: UpdateUserDataType) => {
 };
 
 const uploadAvatar = (data: UploadAvatarType) => {
-  return axios.post<UpdateUserResponse>(`${userPath}/upload-avatar`, data);
+  return axios.patch<UpdateUserResponse>(`${userPath}/upload-avatar`, data);
 };
 
 const checkToken = (data: Token) => {

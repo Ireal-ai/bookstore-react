@@ -73,11 +73,11 @@ const getFavorite = () => {
 };
 
 const addToFavorite = (data: toggleFavoritesType) => {
-  return axios.post<User>(`${bookPath}/add-favorites`, data);
+  return axios.post<User>(`${bookPath}/add-favorites/${data.bookId}`);
 };
 
 const removeFromFavorite = (data: toggleFavoritesType) => {
-  return axios.delete<User>(`${bookPath}/remove-favorites`, { data });
+  return axios.delete<User>(`${bookPath}/favorites/${data.bookId}`);
 };
 
 export default {
