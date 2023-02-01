@@ -16,7 +16,7 @@ type UpdateUserResponse = {
   user: User;
 }
 
-const userPath = '/user';
+const userPath = '/api/user';
 
 const updateUser = (id: number, data: UpdateUserDataType) => {
   return axios.patch<UpdateUserResponse>(`${userPath}/${id}`, data);
