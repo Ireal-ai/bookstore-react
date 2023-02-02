@@ -17,7 +17,9 @@ import Footer from './ui/containers/Footer';
 import Navigation from './ui/containers/Navigation';
 import MainWrapper from './ui/components/MainWrapper';
 
-export const socket = io(config.apiBaseUrl);
+export const socket = io('ws://localhost:8000', {
+  transports: ['websocket'],
+});
 
 const App = () => {
   const dispatch = useAppDispatch();
@@ -29,6 +31,17 @@ const App = () => {
     };
     socket.on('connect', listener);
 
+    socket.on('error', (er) => {
+      console.log('err', er);
+    });
+
+    socket.on('connect_error', (er) => {
+      console.log('connect_error', er);
+    });
+    socket.on('disconnect', (er) => {
+      console.log('disconnect', er);
+    });
+
     return () => {
       socket.off('connect', listener);
     };
@@ -38,7 +51,7 @@ const App = () => {
     (async () => {
       const token = Cookies.get(constants.token.access);
       console.log('token', token);
-      
+
       if (!token) {
         setIsAuthChecked(true);
 
