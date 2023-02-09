@@ -18,7 +18,7 @@ import Navigation from './ui/containers/Navigation';
 import MainWrapper from './ui/components/MainWrapper';
 
 export const socket = io('ws://localhost:8000', {
-  transports: ['websocket'],
+  // transports: ['websocket'],
 });
 
 const App = () => {
